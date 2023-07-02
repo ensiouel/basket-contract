@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package static.v1;
+
+option go_package = "github.com/ensiouel/basket-contract/gen/go/static/v1;pb_static";
+
+service Static {
+  rpc Upload(stream UploadRequest) returns (UploadResponse) {}
+  rpc Download(DownloadRequest) returns (stream DownloadResponse) {}
+  rpc Delete(DeleteRequest) returns (DeleteResponse) {}
+}
+
+message UploadRequest {
+  bytes data = 2;
+}
+
+message UploadResponse {
+  string source_id = 1;
+}
+
+message DownloadRequest {
+  string source_id = 1;
+}
+
+message DownloadResponse {
+  bytes data = 1;
+}
+
+message DeleteRequest {
+  string source_id = 1;
+}
+
+message DeleteResponse {}
